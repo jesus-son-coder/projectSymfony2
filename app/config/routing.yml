@@ -1,0 +1,8 @@
+tech_corp_front:
+    resource: "@TechCorpFrontBundle/Resources/config/routing.yml"
+    prefix:   /
+
+
+#app:
+#    resource: "@AppBundle/Controller/"
+#q    type:     annotation

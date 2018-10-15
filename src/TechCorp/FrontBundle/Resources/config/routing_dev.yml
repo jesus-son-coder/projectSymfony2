@@ -1,0 +1,8 @@
+tech_corp_front_timeline:
+    path: /timeline
+    defaults: { _controller: TechCorpFrontBundle:Timeline:timeline }
+
+tech_corp_front_user_timeline:
+    path: /timeline/{userId}
+    defaults: { _controller: TechCorpFrontBundle:Timeline:userTimeline }
+

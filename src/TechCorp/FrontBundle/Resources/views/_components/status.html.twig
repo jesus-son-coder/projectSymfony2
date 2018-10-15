@@ -1,0 +1,25 @@
+<div class="row" class="status-container">
+    <div class="col-md-12">
+        <p>Par <a href="{{ path ('tech_corp_front_user_timeline', { userId: status.user.id }) }}">
+                {{ status.user.username }}
+            </a>
+        </p>
+        <p>{{ status.content }}</p>
+        <p>le {{ status.createdAt|date('Y-m-d H:i:s') }}</p>
+    </div>
+</div>
+{# Zone de commentaires rajoutée : #}
+<div>
+    {% for comment in status.comments %}
+    <div class="row">
+        <div class="col-md-12">
+            <p>Commentaire de <a href="{{ path ('tech_corp_front_user_timeline', { userId: comment.user.id }) }}">
+                    {{ comment.user.username }}
+                </a>
+            </p>
+            <p>{{ comment.content }}</p>
+            <p>le {{ comment.CreatedAt|date('Y-m-d H:i:s') }}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
