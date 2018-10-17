@@ -3,4 +3,8 @@ tech_corp_front_homepage:
     path:     /
     defaults: { _controller: TechCorpFrontBundle:Default:index }
 
+tech_corp_front_about:
+    path:     /
+    defaults: { _controller: TechCorpFrontBundle:Default:index }
+
 
