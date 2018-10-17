@@ -1,0 +1,12 @@
+{% extends 'TechCorpFrontBundle::layout.html.twig' %}
+
+{% block content %}
+    <h1>Page sécurisée</h1>
+    <h2>{{ user.username }}</h2>
+    {% if is_granted('ROLE_USER') %}
+        <p>Vous êtes un simple utilisateur.</p>
+    {% elseif is_granted('ROLE_ADMIN') %}
+        <p>Vous êtes administrateur</p>
+    {% endif %}
+    <a href="{{ path('tech_corp_front_security_logout') }}">Déconnexion</a>
+{% endblock content %}

@@ -1,3 +1,7 @@
+tech_corp_front_security:
+    resource: "@TechCorpFrontBundle/Resources/config/security_routes.yml"
+    prefix:  /
+
 tech_corp_front:
     resource: "@TechCorpFrontBundle/Resources/config/routing.yml"
     prefix:   /
