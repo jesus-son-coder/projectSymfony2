@@ -42,6 +42,7 @@ class Comment
      */
     protected $status;
 
+
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="comments")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")

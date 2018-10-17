@@ -1,6 +1,6 @@
 
 tech_corp_front_homepage:
-    path:     /hello/{name}
+    path:     /
     defaults: { _controller: TechCorpFrontBundle:Default:index }
 
 

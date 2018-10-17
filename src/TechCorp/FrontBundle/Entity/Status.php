@@ -74,6 +74,7 @@ class Status
     }
 
 
+
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="statuses")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")

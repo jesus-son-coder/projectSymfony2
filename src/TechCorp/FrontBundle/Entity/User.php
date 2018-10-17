@@ -5,14 +5,15 @@ namespace TechCorp\FrontBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use TechCorp\FrontBundle\Entity\Status;
+use FOS\UserBundle\Model\User as BaseUser;
 
 /**
  * Class User
  * @package TechCorp\FrontBundle\Entity
-@ORM\Entity
+ * @ORM\Entity
  * @ORM\Table(name="user")
  */
-class User
+class User extends BaseUser
 {
     /**
      * @ORM\Id
@@ -21,12 +22,16 @@ class User
      */
     protected $id;
 
+
     /**
-     * @var string
+     * Get id
      *
-     * @ORM\Column(name="username", type="string", length=255)
+     * @return integer 
      */
-    private $username;
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * @ORM\OneToMany(targetEntity="Status", mappedBy="user")
@@ -55,47 +60,13 @@ class User
 
     public function __construct()
     {
+        parent::__construct();
+
         $this->statuses = new ArrayCollection();
         $this->friends = new ArrayCollection();
         $this->friendsWithMe = new ArrayCollection();
         $this->comments = new ArrayCollection();
     }
-
-
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set username
-     *
-     * @param string $username
-     * @return User
-     */
-    public function setUsername($username)
-    {
-        $this->username = $username;
-
-        return $this;
-    }
-
-    /**
-     * Get username
-     *
-     * @return string 
-     */
-    public function getUsername()
-    {
-        return $this->username;
-    }
-
-
 
     /**
      * Add statuses
@@ -123,7 +94,7 @@ class User
     /**
      * Get statuses
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getStatuses()
     {
@@ -156,7 +127,7 @@ class User
     /**
      * Get friends
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getFriends()
     {
@@ -189,7 +160,7 @@ class User
     /**
      * Get friendsWithMe
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getFriendsWithMe()
     {
@@ -244,10 +215,12 @@ class User
     /**
      * Get comments
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getComments()
     {
         return $this->comments;
     }
+
+
 }
