@@ -18,6 +18,7 @@ security:
             security: false
 
         main:
+            switch_user: true
             pattern: ^/
             form_login:
                 provider: fos_userbundle
