@@ -1,0 +1,12 @@
+<h1>Welcome to our Tests</h1>
+<br>
+<h2>List des Statuts</h2>
+
+{%  for status in listStatuses %}
+    {#<p>{{ status.content }}</p>#}
+    <p>{% dump(status) %}</p>
+{% endfor %}
+<p>Twig Extension Localized</p>
+<p>
+{{ price | localizedcurrency('EUR') }}
+</p>

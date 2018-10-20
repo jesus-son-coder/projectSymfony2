@@ -10,3 +10,6 @@ tech_corp_front_friends_timeline:
     path: /friends_timeline/{userId}
     defaults: { _controller: TechCorpFrontBundle:Timeline:friendsTimeline }
 
+testor_index:
+    path: /testor
+    defaults: { _controller: TechCorpFrontBundle:Testor:index }
