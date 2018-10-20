@@ -39,7 +39,7 @@ class User extends BaseUser
     protected $statuses;
 
     /**
-     * @ORM\ManyToMany(targetEntity="User")
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="friendsWithMe")
      * @ORM\JoinTable(
      *     name="friends",
      *     joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},

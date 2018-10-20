@@ -14,4 +14,4 @@ fos_user:
 
 #app:
 #    resource: "@AppBundle/Controller/"
-#q    type:     annotation
+#    type:     annotation
