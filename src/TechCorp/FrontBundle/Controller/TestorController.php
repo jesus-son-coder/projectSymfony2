@@ -17,26 +17,42 @@ class TestorController extends Controller
 {
     public function indexAction()
     {
-        //  Accès au service Doctrine :
-        $em = $this->container->get('doctrine')->getManager();
+        $cache = $this->get('markdown_cache');
 
-        // Accès au service de Templating :
-        // $templating = $this->get('templating');
-        // $html = $templating->render('TechCorpFrontBundle:Testor:index.html.twig');
-        // return new Response($html);
+        $someMarkdown = "Je suis du *super* code **MarkDown**";
 
-        $repository = $em->getRepository('TechCorp\FrontBundle\Entity\Status');
-        $statuses = $repository->findAll();
-
-        // Créer une instance d'entité sans "Use" pour importer la classe :
-        $user = new \TechCorp\FrontBundle\Entity\User();
-        $price = 11.31;
-
-        $laLocale = $this->container->getParameter('locale');
-        // die($laLocale);
+        $key = 'mykey6553';
+        if($cache->contains($key)){
+            $someMarkdownTransformed = $cache->fetch($key);
+        } else {
+            sleep(2);
+            $someMarkdownTransformed = $this->container->get('markdown.parser')->transformMarkdown($someMarkdown);
+            $cache->save($key, $someMarkdownTransformed);
+        }
 
         return $this->render('TechCorpFrontBundle:Testor:index.html.twig',
-            array('listStatuses' => $statuses,
-                'price' => $price));
+            array('someMarkdown' => $someMarkdownTransformed)
+        );
+
+    }
+
+    public function cacheManagerAction()
+    {
+        $cache = $this->get('doctrine_cache.providers.my_markdown_cache');
+
+        $someMarkdown = "Je suis du *super* code **MarkDown**";
+        $key = md5($someMarkdown);
+
+        if($cache->contains($key)){
+            $someMarkdownTransformed = $cache->fetch($key);
+        } else {
+            sleep(1);
+            $someMarkdownTransformed = $this->container->get('markdown.parser')->transformMarkdown($someMarkdown);
+            $cache->save($key, $someMarkdownTransformed);
+        }
+
+        return $this->render('TechCorpFrontBundle:Testor:index.html.twig',
+            array('someMarkdown' => $someMarkdownTransformed)
+        );
     }
 }
