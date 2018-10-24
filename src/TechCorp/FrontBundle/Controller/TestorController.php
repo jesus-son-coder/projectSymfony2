@@ -12,23 +12,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use TechCorp\FrontBundle\Entity\Status;
 use TechCorp\FrontBundle\Form\StatusType;
+use TechCorp\FrontBundle\Service\MarkdownTransformer;
 
 class TestorController extends Controller
 {
     public function indexAction()
     {
-        $cache = $this->get('markdown_cache');
-
         $someMarkdown = "Je suis du *super* code **MarkDown**";
 
-        $key = 'mykey6553';
-        if($cache->contains($key)){
-            $someMarkdownTransformed = $cache->fetch($key);
-        } else {
-            sleep(2);
-            $someMarkdownTransformed = $this->container->get('markdown.parser')->transformMarkdown($someMarkdown);
-            $cache->save($key, $someMarkdownTransformed);
-        }
+        $transformer = $this->get('app.markdown_transformer');
+
+        $someMarkdownTransformed = $transformer->parse($someMarkdown);
 
         return $this->render('TechCorpFrontBundle:Testor:index.html.twig',
             array('someMarkdown' => $someMarkdownTransformed)
@@ -36,8 +30,24 @@ class TestorController extends Controller
 
     }
 
+
+    public function markdownManager()
+    {
+        $someMarkdown = "Je suis du *super* code **MarkDown**";
+
+        $transformer = $this->get('app.markdown_transformer');
+
+        $someMarkdownTransformed = $transformer->parse($someMarkdown);
+
+        return $this->render('TechCorpFrontBundle:Testor:index.html.twig',
+            array('someMarkdown' => $someMarkdownTransformed)
+        );
+    }
+
+
     public function cacheManagerAction()
     {
+        // $cache = $this->get('markdown_cache');
         $cache = $this->get('doctrine_cache.providers.my_markdown_cache');
 
         $someMarkdown = "Je suis du *super* code **MarkDown**";
@@ -46,7 +56,7 @@ class TestorController extends Controller
         if($cache->contains($key)){
             $someMarkdownTransformed = $cache->fetch($key);
         } else {
-            sleep(1);
+            // sleep(1);
             $someMarkdownTransformed = $this->container->get('markdown.parser')->transformMarkdown($someMarkdown);
             $cache->save($key, $someMarkdownTransformed);
         }
@@ -55,4 +65,5 @@ class TestorController extends Controller
             array('someMarkdown' => $someMarkdownTransformed)
         );
     }
+
 }

@@ -11,3 +11,8 @@ services:
         class: Twig_Extensions_Extension_Intl
         tags:
           - { name: twig.extension }
+
+    app.markdown_transformer:
+        class: TechCorp\FrontBundle\Service\MarkdownTransformer
+        arguments: ['@markdown.parser']
+
