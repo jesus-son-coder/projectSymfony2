@@ -84,9 +84,6 @@ fos_user:
 
 
 doctrine_cache:
-    aliases:
-        markdown_cache: my_markdown_cache
-
     providers:
         my_markdown_cache:
             type: "%cache_provider_type%"

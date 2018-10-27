@@ -66,15 +66,17 @@ class TestorController extends Controller
 
     public function cacheManagerSimplifieAction()
     {
+        // Cette émthode utilise le Service "app.markdown_transformer" que nous avons créé de toute pièce pour effectuer les mêmes tâches que dans la méthode précédente :
+
         $cache = $this->get('markdown_cache');
 
         $someMarkdown = "Je suis du *super* code **MarkDown**";
 
+        // Appel de notre méthode personnalisée "app.markdown_transformer" :
         $someMarkdown = $this->get('app.markdown_transformer')->parse($someMarkdown);
 
-
         return $this->render('TechCorpFrontBundle:Testor:index.html.twig',
-            array('someMarkdown' => $someMarkdownTransformed)
+            array('someMarkdown' => $someMarkdown)
         );
     }
 
