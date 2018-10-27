@@ -14,5 +14,7 @@ services:
 
     app.markdown_transformer:
         class: TechCorp\FrontBundle\Service\MarkdownTransformer
-        arguments: ['@markdown.parser']
+        arguments: ['@markdown.parser', '@markdown_cache']
+
+
 

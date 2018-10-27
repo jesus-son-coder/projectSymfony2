@@ -47,9 +47,7 @@ class TestorController extends Controller
 
     public function cacheManagerAction()
     {
-        // $cache = $this->get('markdown_cache');
-        $cache = $this->get('doctrine_cache.providers.my_markdown_cache');
-
+        $cache = $this->get('markdown_cache');
         $someMarkdown = "Je suis du *super* code **MarkDown**";
         $key = md5($someMarkdown);
 
@@ -60,6 +58,20 @@ class TestorController extends Controller
             $someMarkdownTransformed = $this->container->get('markdown.parser')->transformMarkdown($someMarkdown);
             $cache->save($key, $someMarkdownTransformed);
         }
+
+        return $this->render('TechCorpFrontBundle:Testor:index.html.twig',
+            array('someMarkdown' => $someMarkdownTransformed)
+        );
+    }
+
+    public function cacheManagerSimplifieAction()
+    {
+        $cache = $this->get('markdown_cache');
+
+        $someMarkdown = "Je suis du *super* code **MarkDown**";
+
+        $someMarkdown = $this->get('app.markdown_transformer')->parse($someMarkdown);
+
 
         return $this->render('TechCorpFrontBundle:Testor:index.html.twig',
             array('someMarkdown' => $someMarkdownTransformed)
