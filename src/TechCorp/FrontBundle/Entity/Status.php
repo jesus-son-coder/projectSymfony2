@@ -4,6 +4,7 @@ namespace TechCorp\FrontBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Status
@@ -27,6 +28,8 @@ class Status
      * @var string
      *
      * @ORM\Column(name="content", type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Length(max=255)
      */
     private $content;
 
@@ -41,6 +44,7 @@ class Status
      * @var \DateTime
      *
      * @ORM\Column(name="created_at", type="datetime", nullable=true)
+     * @Assert\DateTime
      */
     private $createdAt;
 
@@ -48,6 +52,7 @@ class Status
      * @var \DateTime
      *
      * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     * * @Assert\DateTime
      */
     private $updatedAt;
 

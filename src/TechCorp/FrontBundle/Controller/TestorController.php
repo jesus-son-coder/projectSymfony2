@@ -24,10 +24,18 @@ class TestorController extends Controller
 
         $someMarkdownTransformed = $transformer->parse($someMarkdown);
 
-        return $this->render('TechCorpFrontBundle:Testor:index.html.twig',
+        return $this->render('TechCorpFrontBundle:Testor:city.html.twig',
             array('someMarkdown' => $someMarkdownTransformed)
         );
 
+    }
+
+    public function timelineTestorAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $statuses = $em->getRepository('TechCorpFrontBundle:Status')->getStatusesAndUsers(0)->getResult();
+
+        return $this->render('TechCorpFrontBundle:Testor:timeline.html.twig', array('statuses' => $statuses));
     }
 
 
@@ -39,7 +47,7 @@ class TestorController extends Controller
 
         $someMarkdownTransformed = $transformer->parse($someMarkdown);
 
-        return $this->render('TechCorpFrontBundle:Testor:index.html.twig',
+        return $this->render('TechCorpFrontBundle:Testor:city.html.twig',
             array('someMarkdown' => $someMarkdownTransformed)
         );
     }
@@ -59,7 +67,7 @@ class TestorController extends Controller
             $cache->save($key, $someMarkdownTransformed);
         }
 
-        return $this->render('TechCorpFrontBundle:Testor:index.html.twig',
+        return $this->render('TechCorpFrontBundle:Testor:city.html.twig',
             array('someMarkdown' => $someMarkdownTransformed)
         );
     }
@@ -75,7 +83,7 @@ class TestorController extends Controller
         // Appel de notre méthode personnalisée "app.markdown_transformer" :
         $someMarkdown = $this->get('app.markdown_transformer')->parse($someMarkdown);
 
-        return $this->render('TechCorpFrontBundle:Testor:index.html.twig',
+        return $this->render('TechCorpFrontBundle:Testor:city.html.twig',
             array('someMarkdown' => $someMarkdown)
         );
     }

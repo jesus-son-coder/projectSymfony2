@@ -1,0 +1,58 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block body %}
+    <div class="container">
+    <h1>The Booking Page</h1>
+        <style>
+            .custom_form_group {
+                padding-bottom: 15px;
+            }
+        </style>
+    <form method="post" action="">
+        {{ form_errors(form) }}
+        <div class="row custom_form_group">
+            <div class="col-md-3">
+                {{ form_label(form.client) }}
+            </div>
+            <div class="col-md-9">
+                {{ form_widget(form.client) }}
+            </div>
+            {{ form_errors(form.client) }}
+        </div>
+
+        <div class="row custom_form_group">
+            <div class="col-md-3">
+                {{ form_label(form.date) }}
+            </div>
+            <div class="col-md-9">
+                {{ form_widget(form.date) }}
+            </div>
+            {{ form_errors(form.date) }}
+        </div>
+
+        <div class="row custom_form_group">
+            <div class="col-md-3">
+                {{ form_label(form.chambre) }}
+            </div>
+            <div class="col-md-9">
+                {{ form_widget(form.chambre) }}
+            </div>
+            {{ form_errors(form.chambre) }}
+        </div>
+
+        <div class="row custom_form_group">
+            <div class="col-md-3">
+                {{ form_label(form.moyenpayment) }}
+            </div>
+            <div class="col-md-9">
+                {{ form_widget(form.moyenpayment) }}
+            </div>
+            {{ form_errors(form.moyenpayment) }}
+        </div>
+        {{ form_rest(form) }}
+        <button type="submit">Valider</button>
+    </form>
+    </div>
+
+
+{% endblock %}

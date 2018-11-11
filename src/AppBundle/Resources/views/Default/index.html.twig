@@ -1,0 +1,50 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block body %}
+<h1>Here we are !</h1>
+    <form method="post" action="">
+        <input type="text" id="mot_cle" />
+    </form>
+
+    <div id="results">
+        <ul class="result">
+            {% for ville in villes %}
+                <li><a id="resultats_ville" href="{{ path('app_ville', {'id': ville.id}) }}">{{ ville.name }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            if (!$('body').hasClass('searching')){
+                $('#mot_cle').keyup(function(e) {
+                    var contenu = $('#mot_cle').val();
+                    $('#results').html('');
+                    if(contenu.length > 2 ) {
+                        $('#results').addClass('miniload');
+                        $('#results').append('<div id="chargement">Chargement...' +
+                            '<div id="spinner" class="spinner"></div></div>');
+                        setTimeout(function(){
+                            $.ajax({
+                                type: 'POST',
+                                url: "{{ path('app_recherche') }}",
+                                data: 'mot_cle=' + contenu,
+                                success: function(data){
+                                    $('body').addClass('searching');
+                                    $('#results').html('');
+                                    $('#chargement').remove();
+                                    $('#results').html(data);
+                                    return;
+                                },
+                                complete: function(){
+                                    $('#chargement').remove();
+                                    return $('body').removeClass('searching');
+                                }
+                            });
+                        }, 1000);
+                    }
+                })
+            }
+        });
+    </script>
+{% endblock %}

@@ -1,7 +1,10 @@
 # Learn more about services, parameters and containers at
 # http://symfony.com/doc/current/book/service_container.html
 parameters:
-#    parameter_name: value
+    markdown_transformer.class: AppBundle\Service\MarkdownTransformer
+    sheet_type.class: AppBundle\Form\SheetType
+    sheet_form.class: Symfony\Component\Form\Form
+    sheet_handler.class:  AppBundle\Form\Handler\SheetHandler
 
 services:
 #    service_name:
@@ -13,8 +16,24 @@ services:
           - { name: twig.extension }
 
     app.markdown_transformer:
-        class: TechCorp\FrontBundle\Service\MarkdownTransformer
+        class: %markdown_transformer.class%
         arguments: ['@markdown.parser', '@doctrine_cache.providers.my_markdown_cache']
 
+    sheet_form:
+        factory_service: form.factory
+        factory_method: createNamed
+        class: %sheet_form.class%
+        arguments:
+            - sheet
+            - sheet_form
 
+    sheet_type:
+        class: %sheet_type.class%
+        tags:
+            - { name: form.type, alias: sheet_form }
+
+    sheet_handler:
+        class: %sheet_handler.class%
+        arguments: [@sheet_form, @request, @doctrine.orm.entity_manager]
+        scope: request
 

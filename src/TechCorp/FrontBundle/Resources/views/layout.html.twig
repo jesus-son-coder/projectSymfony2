@@ -1,8 +1,8 @@
 {% extends'::base.html.twig' %}
 
 {% block stylesheets %}
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-<link rel="stylesheet" href="https://getbootstrap.com/docs/3.3/examples/jumbotron/jumbotron.css" />
+<link rel="stylesheet" href="/symphony2_201810/projectSymfony2/web/bundles/techcorpfront/css/bootstrap.min.css" />
+{#<link rel="stylesheet" href="https://getbootstrap.com/docs/3.3/examples/jumbotron/jumbotron.css" />#}
 {% endblock stylesheets %}
 
 {% block javascripts_head %}
@@ -14,6 +14,7 @@
 {% endblock javascripts_head %}
 
 {% block javascripts_body %}
+    {{ parent() }}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://getbootstrap.com/docs/3.3/dist/js/bootstrap.min.js"></script>
 {% endblock javascripts_body %}

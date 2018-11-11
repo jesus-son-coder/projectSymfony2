@@ -1,0 +1,16 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block body %}
+    <div id="results">
+        <ul class="result">
+            {% for ville in villes %}
+                <li><a id="resultats_ville" href="{{ path('app_ville', {'id': ville.id}) }}">
+                        {{ ville.name }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
+
+

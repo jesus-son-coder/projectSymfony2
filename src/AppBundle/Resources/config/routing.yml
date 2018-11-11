@@ -1,0 +1,31 @@
+
+app_front_homepage:
+    defaults: { _controller: AppBundle:Default:index }
+    path: /
+
+app_ville:
+    defaults: { _controller: AppBundle:Default:ville }
+    path: /app_ville/{id}
+    requirements:
+        id: '\d+'
+
+app_recherche:
+    defaults: { _controller: AppBundle:Default:recherche }
+    path: /searching
+    methods: [post]
+
+app_booking_homepage:
+    defaults: { _controller: AppBundle:Booking:index }
+    path: /booking_homepage
+
+front_sheet_create:
+    path: /sheet/created
+    defaults: { _controller: AppBundle:Sheet:create }
+
+front_sheet_list:
+    path: /sheet/list
+    defaults: [ _controller: AppBundle:Sheet:list ]
+
+front_sheet_show:
+    path: /sheet/{id}
+    defaults: { _controller: AppBundle:Sheet:show }

@@ -1,26 +1,29 @@
 {% extends 'TechCorpFrontBundle::layout.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="/symphony2_201810/projectSymfony2/web/bundles/techcorpfront/css/style.css" />
+{% endblock stylesheets %}
+
+
 {% block content %}
     <div class="container">
         <h1>Timeline de {{ user.username }}</h1>
-
         {% if is_granted('IS_AUTHENTICATED_REMEMBERED') and app.user == user %}
-        {{ form_start(form) }}
-            {{ form_errors(form) }}
-            <div>
-                {{ form_label(form.content) }}
-                {{ form_errors(form.content) }}
-                {{ form_widget(form.content) }}
-            </div>
-
-            <input type="submit" />
-        {{ form_end(form) }}
+            {% if not app.user.hasFriend(user) %}
+                <button class="btn btn-primary add-friend" data-user-id="{{ user.id }}">Ajouter à la liste d'amis</button>
+            {% else %}
+                <button class="btn btn-primary remove-friend" data-user-id="{{ user.id }}">Supprimer de la liste d'amis</button>
+            {% endif %}
         {% endif %}
 
         {% if statuses != null %}
             <div class="container">
                 {% for status in statuses %}
                     {% include 'TechCorpFrontBundle:_components:status.html.twig' with {status: status} %}
+                        {% if not loop.last %}
+                            <hr class="status-separator" />
+                        {% endif %}
                 {% endfor %}
             </div>
         {% else %}

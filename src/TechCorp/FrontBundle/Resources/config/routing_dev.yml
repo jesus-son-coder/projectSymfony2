@@ -13,3 +13,17 @@ tech_corp_front_friends_timeline:
 testor_index:
     path: /testor
     defaults: { _controller: TechCorpFrontBundle:Testor:index }
+
+testor_timeline:
+    path: /testor_timeline
+    defaults: { _controller: TechCorpFrontBundle:Testor:timelineTestor }
+
+tech_corp_front_user_add_friend:
+    path:  /user/add-friend/{friendId}
+    defaults: { _controller: TechCorpFrontBundle:User:addFriend }
+    requirements: { method: POST }
+
+tech_corp_front_user_remove_friend:
+    path:  /user/remove-friend/{friendId}
+    defaults: { _controller: TechCorpFrontBundle:User:removeFriend }
+    requirements: { method: POST }
