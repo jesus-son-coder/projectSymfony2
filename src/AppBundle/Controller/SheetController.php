@@ -8,6 +8,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Form\EditorType;
 use AppBundle\Form\Handler\SheetHandler;
 use AppBundle\Form\SheetType;
 use Doctrine\ORM\EntityNotFoundException;
@@ -15,6 +16,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Sheet;
+use AppBundle\Entity\Editor;
 
 class SheetController extends Controller
 {
@@ -46,6 +48,17 @@ class SheetController extends Controller
         return $this->render('AppBundle:Sheet:create.html.twig', array(
             'form' => $formHandler->getForm()->createView()
         ));
+    }
+
+    public function editorAction()
+    {
+        $article = new Editor();
+
+        $form = $this->createForm(new EditorType(), $article);
+
+        return $this->render('AppBundle:sheet:editor.html.twig',
+            array('form' => $form->createView())
+        );
     }
 
 

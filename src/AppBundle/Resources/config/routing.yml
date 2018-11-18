@@ -29,3 +29,7 @@ front_sheet_list:
 front_sheet_show:
     path: /sheet/{id}
     defaults: { _controller: AppBundle:Sheet:show }
+
+front_sheet_ckeditor:
+    path: /sheet_ckeditor
+    defaults: { _controller: AppBundle:Sheet:editor }
