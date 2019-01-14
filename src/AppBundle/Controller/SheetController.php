@@ -22,6 +22,13 @@ class SheetController extends Controller
 {
     public function showAction($id, Request $request)
     {
+        $request->isXmlHttpRequest(); // Ajax ?
+        $request->getPreferredLanguage(array('en', 'fr'));
+        $request->query->get('page');   // $_GET
+        $request->request->get('page'); // $_POST
+
+
+
         // Gérer la Session utilisateur :
         $session = $this->get('session');
         $session->set('machin', 'valeur');
@@ -50,14 +57,63 @@ class SheetController extends Controller
         ));
     }
 
-    public function editorAction()
+    public function editorAction(Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
+
         $article = new Editor();
+        $articles = $em->getRepository('AppBundle:Editor')->findAll();
 
         $form = $this->createForm(new EditorType(), $article);
+        $request = $this->get('request_stack')->getCurrentRequest();
 
-        return $this->render('AppBundle:sheet:editor.html.twig',
-            array('form' => $form->createView())
+        $form->handleRequest($request);
+        if($form->isValid()) {
+            $em->persist($article);
+            $em->flush();
+            return $this->redirectToRoute('front_sheet_ckeditor_list');
+        }
+
+        return $this->render('AppBundle:sheet:editor.html.twig', array(
+                'form' => $form->createView(),
+                'articles' => $articles
+            )
+        );
+    }
+
+    public function modifiereditorAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $article = $em->getRepository('AppBundle:Editor')->findOneById($id);
+        $articles = $em->getRepository('AppBundle:Editor')->findAll();
+        $form = $this->createForm(new EditorType(), $article);
+        $request = $this->get('request_stack')->getCurrentRequest();
+
+        $form->handleRequest($request);
+        if($form->isValid()) {
+            $em->persist($article);
+            $em->flush();
+
+            return $this->redirectToRoute('front_sheet_ckeditor_list');
+        }
+
+        return $this->render('AppBundle:sheet:editor.html.twig', array(
+                'form' => $form->createView(),
+                'article' => $article
+            )
+        );
+    }
+
+    public function listeditorAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $articles = $em->getRepository('AppBundle:Editor')->findAll();
+
+        return $this->render('AppBundle:sheet:listeditor.html.twig', array(
+                'articles' => $articles
+            )
         );
     }
 

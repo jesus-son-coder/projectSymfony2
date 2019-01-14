@@ -15,6 +15,25 @@
 
 </head>
 <body>
+{#
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <ul class="nav navbar-nav" style="width: 100%">
+            <li><a href="#">Happy App ;-)</a></li>
+            <li><a href="#">Menu 1</a></li>
+            <li><a href="#">Menu 2</a></li>
+            <li class="pull-right"><a href="#">Login</a></li>
+        </ul>
+    </div>
+</nav>
+<style>
+    body{
+        margin-top: 50px;
+    }
+</style>
+#}
+
+{{ render(controller('FOSUserBundle:Security:login')) }}
 {% block body %}{% endblock %}
 
 </body>

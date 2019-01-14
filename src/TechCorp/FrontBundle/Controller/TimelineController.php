@@ -25,10 +25,10 @@ class TimelineController extends Controller
         }
 
         // 2) Créer le Formulaire :
-        $authenticatedUser = $this->get('security.context')->getToken()->getUser();
+        $authenticatedUser = $this->get('security.context')->getToken()->getUser(); 
         $status = new Status();
         $status->setDeleted(false);
-        $status->setUser($authenticatedUser);
+        $status->setUser($authenticatedUser); // die('là!');
 
         $form = $this->createForm(new StatusType(), $status);
         $request = $this->get('request_stack')->getCurrentRequest();

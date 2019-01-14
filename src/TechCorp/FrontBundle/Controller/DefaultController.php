@@ -8,6 +8,6 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('TechCorpFrontBundle:Default:city.html.twig');
+        return $this->render('TechCorpFrontBundle:Default:index.html.twig');
     }
 }

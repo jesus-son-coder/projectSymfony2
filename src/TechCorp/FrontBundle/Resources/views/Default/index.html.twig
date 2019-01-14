@@ -1,5 +1,5 @@
 {% extends 'TechCorpFrontBundle::layout.html.twig' %}
 
 {% block content %}
-<h1>Hello !</h1>
+<h1>Hello {% if app and app.user %}{{ app.user.username }} !{% endif %}</h1>
 {% endblock content %}

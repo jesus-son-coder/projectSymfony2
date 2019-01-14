@@ -3,7 +3,7 @@
 {% block body %}
 
     <div class="container">
-        <h1>Editor Form</h1>
+        <h1>Modifier l'article</h1>
         <form method="post" action="">
             {{ form_errors(form) }}
 
@@ -71,9 +71,6 @@
             <div class="row editor_custom_form_group">
                 <div class="col-md-12">
                     {{ form_widget(form.submit) }}
-                </div>
-                <div class="col-md-12">
-                    <a href="{{ path('front_sheet_ckeditor_list') }}" class="btn btn-default">Retour à la liste</a>
                 </div>
             </div>
 

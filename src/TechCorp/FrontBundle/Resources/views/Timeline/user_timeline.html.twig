@@ -5,6 +5,19 @@
     <link rel="stylesheet" href="/symphony2_201810/projectSymfony2/web/bundles/techcorpfront/css/style.css" />
 {% endblock stylesheets %}
 
+{#
+{% block javascripts_body %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { 'callback': 'fos.Router.setData' }) }}"></script>
+    <script src="{{ asset('bundles/techcorpfront/js/manage-friends.js') }}"></script>
+{% endblock javascripts_body %}
+#}
+{% block javascripts_body %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { 'callback': 'fos.Router.setData' }) }}"></script>
+{% endblock javascripts_body %}
 
 {% block content %}
     <div class="container">
@@ -16,6 +29,7 @@
                 <button class="btn btn-primary remove-friend" data-user-id="{{ user.id }}">Supprimer de la liste d'amis</button>
             {% endif %}
         {% endif %}
+        <br/><br/>
 
         {% if statuses != null %}
             <div class="container">
@@ -28,8 +42,9 @@
             </div>
         {% else %}
             <p>
-                Cet utilisateur n'a pour le moment rien publié.
+               Cet utilisateur n'a pour le moment rien publié.
             </p>
+
         {% endif %}
 
         <h2>Liste des personnes ajoutées</h2>

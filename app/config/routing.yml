@@ -1,6 +1,13 @@
+#sdz_blog:
+#    resource: "@SdzBlogBundle/Resources/config/routing.yml"
+#    prefix:   /
+
 tech_corp_front:
     resource: "@TechCorpFrontBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /{_locale}
+    requirements:
+        _locale: fr|en
+    defaults: { _locale:fr}
 
 app_front:
     resource: "@AppBundle/Resources/config/routing.yml"
@@ -8,6 +15,13 @@ app_front:
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+
+#elfinder:
+#    resource: "@IvoryCKEditorBundle/Resources/config/routing.yml"
+
 
 #tech_corp_front_security:
 #    resource: "@TechCorpFrontBundle/Resources/config/security_routes.yml"

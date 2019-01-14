@@ -33,3 +33,18 @@ front_sheet_show:
 front_sheet_ckeditor:
     path: /sheet_ckeditor
     defaults: { _controller: AppBundle:Sheet:editor }
+
+front_sheet_ckeditor_list:
+    path: /sheet_ckeditor_list
+    defaults: { _controller: AppBundle:Sheet:listeditor }
+
+front_sheet_ckeditor_modifier:
+    path: /sheet_ckeditor_modify/{id}
+    defaults: { _controller: AppBundle:Sheet:modifiereditor }
+    requirements:
+        id: '\d+'
+
+appbundle_parameters:
+    path: /app_bundle_parameters
+    defaults: { _controller: AppBundle:Tools:requestParameters }
+

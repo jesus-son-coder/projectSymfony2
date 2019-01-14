@@ -51,7 +51,7 @@ class Editor
     protected $service;
 
     /**
-     * @var string
+     * @var date
      *
      * @ORM\Column(name="datepublication", type="date")
      */
@@ -67,7 +67,7 @@ class Editor
     /**
      * @var string
      *
-     * @ORM\Column(name="publicated", type="date")
+     * @ORM\Column(name="publicated", type="string", length=255)
      */
     protected $publicated ;
 
@@ -199,7 +199,7 @@ class Editor
     /**
      * Set publicated
      *
-     * @param \DateTime $publicated
+     * @param string $publicated
      * @return Editor
      */
     public function setPublicated($publicated)
@@ -212,7 +212,7 @@ class Editor
     /**
      * Get publicated
      *
-     * @return \DateTime 
+     * @return string
      */
     public function getPublicated()
     {
